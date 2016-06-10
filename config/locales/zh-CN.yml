@@ -2,12 +2,32 @@ zh-CN:
   activerecord:
     models:
       admin: 管理员
+      user: 信贷员
+      feedback: 意见反馈
     attributes:
       admin:
         id: ID
         name: 姓名
         password: 密码
         password_confirmation: 确认密码
+        created_at: 创建
+        updated_at: 更新
+      user:
+        id: ID
+        openid: OpenID
+        avatar: 头像
+        number: 用户ID
+        name: 姓名
+        cell: 手机
+        email: 电子邮箱
+        id_card: 身份证
+        bank_card: 银行卡
+        alipay: 支付宝
+        created_at: 创建
+        updated_at: 更新
+      feedback:
+        id: ID
+        content: 意见内容
         created_at: 创建
         updated_at: 更新
   title: DKRZ
@@ -23,3 +43,8 @@ zh-CN:
   please_log_in: 请登录
   reset_password: 重设密码
   invalid_email_or_password: 无效的用户名或密码
+  user_list: 信贷员列表
+  new_user: 新建信贷员
+  not_email: 不是有效的电子邮箱
+  feedback_list: 意见反馈列表
+  show: 显示

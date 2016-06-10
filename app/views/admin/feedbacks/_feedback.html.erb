@@ -1,0 +1,10 @@
+<tr>
+  <td><%= feedback.id %></td>
+  <td><%= feedback.user.name if feedback.user %></td>
+  <td><%= feedback.user.cell if feedback.user %></td>
+  <td><%= feedback.user.email if feedback.user %></td>
+  <td><%= feedback.content.truncate(30) %></td>
+  <td><%= I18n.l(feedback.created_at) %></td>
+  <td><%= link_to t(:show), admin_feedback_path(feedback) %></td>
+  <td><%= link_to t(:destroy), admin_feedback_path(feedback), method: :delete, data: {confirm: t(:are_you_sure)} %></td>
+</tr>

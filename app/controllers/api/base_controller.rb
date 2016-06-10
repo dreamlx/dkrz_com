@@ -4,6 +4,7 @@ class Api::BaseController < ApplicationController
 
   # disable cookies (no set-cookies header in response)
   before_action :destroy_session
+  before_action :authenticate_user!
   attr_accessor :current_user
   
   def api_error(opts = {})
@@ -16,16 +17,13 @@ class Api::BaseController < ApplicationController
 
   private
   def authenticate_user!
-    token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
-
-    name = options.blank?? nil : options[:name]
-    user = name && User.find_by(name: name)
-    
-    if user && ActiveSupport::SecurityUtils.secure_compare(user.authentication_token, token)
-      self.current_user = user
-    else
-      return unauthenticated!
-    end
+      openid = ActionController::HttpAuthentication::Token.token_and_options(request)
+      user = User.find_by(openid: openid)
+      if user
+        self.current_user = user
+      else
+        return unauthenticated!
+      end
   end
     
     def unauthenticated!

@@ -4,7 +4,16 @@ Rails.application.routes.draw do
     post    'login'   => 'sessions#create'
     delete  'logout'  => 'sessions#destroy'
     resources :admins
+    resources :users
+    resources :feedbacks, only: [:index, :destroy, :show]
     root 'welcome#index'
+  end
+
+  namespace :api do
+    resources :users, only: [] do
+      get :get_info, on: :collection, defaults: {format: :json}
+    end
+    resources :feedbacks, only: :create
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

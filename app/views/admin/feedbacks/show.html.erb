@@ -1,0 +1,25 @@
+<p>
+  <strong>
+    <%= User.human_attribute_name(:name) %>
+  </strong>
+  <%= @feedback.user.name if @feedback.user %>
+</p>
+<p>
+  <strong>
+    <%= User.human_attribute_name(:cell) %>
+  </strong>
+  <%= @feedback.user.cell if @feedback.user %>
+</p>
+<p>
+  <strong>
+    <%= User.human_attribute_name(:email) %>
+  </strong>
+  <%= @feedback.user.email if @feedback.user %>
+</p>
+<p>
+  <strong>
+    <%= Feedback.human_attribute_name(:content) %>
+  </strong>
+  <%= simple_format(@feedback.content) %>
+</p>
+<%= link_to t(:back), :back %>

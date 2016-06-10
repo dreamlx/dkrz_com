@@ -15,7 +15,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if admin_logged_in? %>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li class="<%= 'active' if params[:controller] == 'admin/users' %>"><%= link_to User.model_name.human, admin_users_path %></li>
+          <li class="<%= 'active' if params[:controller] == 'admin/feedbacks' %>"><%= link_to Feedback.model_name.human, admin_feedbacks_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="<%= 'active' if params[:controller] == 'admin/admins' %>"><%= link_to Admin.model_name.human, admin_admins_path %></li>
