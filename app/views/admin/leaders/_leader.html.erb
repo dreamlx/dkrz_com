@@ -18,6 +18,4 @@
   <td><%= leader.has_accumulation_fund %></td>
   <td><%= leader.has_life_insurance %></td>
   <td><%= I18n.l(leader.created_at) %></td>
-  <td><%= link_to t(:show), admin_leader_path(leader) %></td>
-  <td><%= link_to t(:destroy), admin_leader_path(leader), method: :delete, data: {confirm: t(:are_you_sure)} %></td>
 </tr>
