@@ -4,6 +4,7 @@ zh-CN:
       admin: 管理员
       user: 信贷员
       feedback: 意见反馈
+      leader: 借贷人
     attributes:
       admin:
         id: ID
@@ -30,6 +31,24 @@ zh-CN:
         content: 意见内容
         created_at: 创建
         updated_at: 更新
+      leader:
+        id: ID
+        name: 姓名
+        phone: 手机
+        sex: 性别
+        birth: 出生日期
+        workplace: 工作城市
+        income: 目前税前收入
+        payoff_type: 发薪方式
+        job: 您的职业
+        has_credit_card: 目前有无信用卡
+        loan_experience: 目前有无贷款
+        mortgage: 目前有无房贷
+        has_car_loan: 目前有无车贷款
+        has_life_insurance: 有无正在缴费的人寿险
+        has_accumulation_fund: 是否正在缴费公积金
+        created_at: 创建
+        updated_at: 更新
   title: DKRZ
   new_admin: 新建管理员
   admin_list: 管理员列表
@@ -48,3 +67,4 @@ zh-CN:
   not_email: 不是有效的电子邮箱
   feedback_list: 意见反馈列表
   show: 显示
+  leader_list: 借贷人列表

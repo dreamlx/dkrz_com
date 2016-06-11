@@ -1,0 +1,23 @@
+<tr>
+  <td><%= leader.id %></td>
+  <td><%= leader.user.name if leader.user %></td>
+  <td><%= leader.user.cell if leader.user %></td>
+  <td><%= leader.user.email if leader.user %></td>
+  <td><%= leader.name %></td>
+  <td><%= leader.phone %></td>
+  <td><%= leader.sex %></td>
+  <td><%= I18n.l(leader.birth) if leader.birth %></td>
+  <td><%= leader.workplace %></td>
+  <td><%= leader.income %></td>
+  <td><%= leader.payoff_type %></td>
+  <td><%= leader.job %></td>
+  <td><%= leader.has_credit_card %></td>
+  <td><%= leader.loan_experience %></td>
+  <td><%= leader.mortgage %></td>
+  <td><%= leader.has_car_loan %></td>
+  <td><%= leader.has_accumulation_fund %></td>
+  <td><%= leader.has_life_insurance %></td>
+  <td><%= I18n.l(leader.created_at) %></td>
+  <td><%= link_to t(:show), admin_leader_path(leader) %></td>
+  <td><%= link_to t(:destroy), admin_leader_path(leader), method: :delete, data: {confirm: t(:are_you_sure)} %></td>
+</tr>

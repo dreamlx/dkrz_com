@@ -1,0 +1,34 @@
+<div class="col-md-12">
+  <h3><%= t(:leader_list) %></h3>
+</div>
+<div class="col-md-12">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Leader.human_attribute_name(:id) %></th>
+        <th><%= User.model_name.human + User.human_attribute_name(:name) %></th>
+        <th><%= User.model_name.human + User.human_attribute_name(:cell) %></th>
+        <th><%= User.model_name.human + User.human_attribute_name(:email) %></th>
+        <th><%= Leader.human_attribute_name(:name) %></th>
+        <th><%= Leader.human_attribute_name(:phone) %></th>
+        <th><%= Leader.human_attribute_name(:sex) %></th>
+        <th><%= Leader.human_attribute_name(:birth) %></th>
+        <th><%= Leader.human_attribute_name(:workplace) %></th>
+        <th><%= Leader.human_attribute_name(:income) %></th>
+        <th><%= Leader.human_attribute_name(:payoff_type) %></th>
+        <th><%= Leader.human_attribute_name(:job) %></th>
+        <th><%= Leader.human_attribute_name(:has_credit_card) %></th>
+        <th><%= Leader.human_attribute_name(:loan_experience) %></th>
+        <th><%= Leader.human_attribute_name(:mortgage) %></th>
+        <th><%= Leader.human_attribute_name(:has_car_loan) %></th>
+        <th><%= Leader.human_attribute_name(:has_accumulation_fund) %></th>
+        <th><%= Leader.human_attribute_name(:has_life_insurance) %></th>
+        <th><%= Leader.human_attribute_name(:created_at) %></th>
+        <th colspan="2"><%= t(:operations) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @leaders %>
+    </tbody>
+  </table>
+</div>
