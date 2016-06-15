@@ -44,6 +44,49 @@ params: {
           "has_car_loan"=>"yes",
           "has_accumulation_fund"=>"yes",
           "has_life_insurance"=>"yes"
+          "channel"=>"001"
         }
 response: status is 200 if ok, else 422 or 401
+```
+## 专属二维码
+```
+curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/get_qrcode
+```
+## 获取邀请码
+```
+curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/get_invite_code
+```
+## 新手红包
+```
+curl -X GET -d "invite_code=111111" --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/set_superior
+```
+## 账户余额
+```
+curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/get_balance
+```
+## 更新个人信息
+```
+curl -X PATCH -d "user[name]=xxx&..." --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/update_profile
+```
+```
+{
+  "user"=>
+  {
+    "avatar"=> "data:image/png;base64,...",
+    "name"=> "new name",
+    "cell"=> "new cell",
+    "email"=> "new email",
+    "id_card"=> "id card",
+    "bank_card"=> "bank card",
+    "alipay"=> "alipay"
+  }
+}
+```
+## 佣金报表
+```
+curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/commissions
+```
+## 代理人报表
+```
+curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/subordinates
 ```

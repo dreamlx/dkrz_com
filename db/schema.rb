@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611083155) do
+ActiveRecord::Schema.define(version: 20160615164839) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -45,26 +45,51 @@ ActiveRecord::Schema.define(version: 20160611083155) do
     t.string   "has_accumulation_fund", limit: 255
     t.string   "has_life_insurance",    limit: 255
     t.integer  "user_id",               limit: 4
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
+    t.string   "channel",               limit: 255
+    t.decimal  "amount",                            precision: 12, scale: 2, default: 0.0
   end
 
   add_index "leaders", ["user_id"], name: "index_leaders_on_user_id", using: :btree
 
+  create_table "records", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.decimal  "amount",                      precision: 12, scale: 2, default: 0.0
+    t.integer  "recordable_id",   limit: 4
+    t.string   "recordable_type", limit: 255
+    t.decimal  "from_amount",                 precision: 12, scale: 2, default: 0.0
+    t.decimal  "to_amount",                   precision: 12, scale: 2, default: 0.0
+    t.date     "date"
+    t.string   "desc",            limit: 255
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
+  end
+
+  add_index "records", ["recordable_type", "recordable_id"], name: "index_records_on_recordable_type_and_recordable_id", using: :btree
+  add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "openid",     limit: 255
-    t.string   "avatar",     limit: 255
-    t.string   "number",     limit: 255
-    t.string   "name",       limit: 255
-    t.string   "cell",       limit: 255
-    t.string   "email",      limit: 255
-    t.string   "id_card",    limit: 255
-    t.string   "bank_card",  limit: 255
-    t.string   "alipay",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "openid",            limit: 255
+    t.string   "avatar",            limit: 255
+    t.string   "number",            limit: 255
+    t.string   "name",              limit: 255
+    t.string   "cell",              limit: 255
+    t.string   "email",             limit: 255
+    t.string   "id_card",           limit: 255
+    t.string   "bank_card",         limit: 255
+    t.string   "alipay",            limit: 255
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
+    t.string   "qrcode",            limit: 255
+    t.integer  "superior_id",       limit: 4
+    t.decimal  "commission",                    precision: 12, scale: 2, default: 0.0
+    t.decimal  "second_commission",             precision: 12, scale: 2, default: 0.0
+    t.decimal  "third_commission",              precision: 12, scale: 2, default: 0.0
+    t.decimal  "balance",                       precision: 12, scale: 2, default: 0.0
   end
 
   add_foreign_key "feedbacks", "users"
   add_foreign_key "leaders", "users"
+  add_foreign_key "records", "users"
 end

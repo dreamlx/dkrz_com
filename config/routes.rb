@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [] do
       get :get_info, on: :collection, defaults: {format: :json}
+      get :get_qrcode, on: :collection, defaults: {format: :json}
+      get :get_invite_code, on: :collection, defaults: {format: :json}
+      get :set_superior, on: :collection, defaults: {format: :json}
+      patch :update_profile, on: :collection, defaults: {format: :json}
+      get :get_balance, on: :collection, defaults: {format: :json}
+      get :commissions, on: :collection, defaults: {format: :json}
+      get :subordinates, on: :collection, defaults: {format: :json}
     end
     resources :feedbacks, only: :create
     resources :leaders, only: :create

@@ -14,7 +14,7 @@ RSpec.describe "leaders" do
       expect(response).to have_http_status(201)
       leader = Leader.first
       expect(leader.user_id).to eq user.id
-      ["name", "phone", "sex", "workplace", "income", "payoff_type", "job", "has_credit_card", "loan_experience", "mortgage", "has_car_loan", "has_accumulation_fund", "has_life_insurance"].each do |item|
+      ["name", "phone", "sex", "workplace", "income", "payoff_type", "job", "has_credit_card", "loan_experience", "mortgage", "has_car_loan", "has_accumulation_fund", "has_life_insurance", "channel"].each do |item|
         expect(leader.send(item)).to eq valid_attributes[:"#{item}"]
       end
       expect(leader.birth.to_s).to eq valid_attributes[:birth].to_s

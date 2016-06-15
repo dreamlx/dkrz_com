@@ -14,7 +14,7 @@ FactoryGirl.define do
     has_car_loan "YES"
     has_accumulation_fund "MyString"
     has_life_insurance "YES"
-    
+    channel "001"
     association :user
   end
 end

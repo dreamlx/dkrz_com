@@ -14,7 +14,7 @@ class Api::LeadersController < Api::BaseController
         :name, :phone, :sex, :workplace, :birth,
         :income, :payoff_type, :job, :has_credit_card, :loan_experience,
         :mortgage, :has_car_loan, :has_accumulation_fund,
-        :has_life_insurance
+        :has_life_insurance, :channel
         )
     end
 end

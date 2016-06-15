@@ -17,12 +17,13 @@ class Api::BaseController < ApplicationController
 
   private
   def authenticate_user!
-      openid = ActionController::HttpAuthentication::Token.token_and_options(request)
+      openid, options = ActionController::HttpAuthentication::Token.token_and_options(request)
+      return unauthenticated! if openid.blank?
       user = User.find_by(openid: openid)
       if user
         self.current_user = user
       else
-        return unauthenticated!
+        self.current_user = User.create!(openid: openid)
       end
   end
     

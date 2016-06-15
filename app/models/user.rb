@@ -8,15 +8,19 @@ end
 class User < ActiveRecord::Base
   validates :openid, presence: true, uniqueness: true
   # validates :number, length: { is: 6 } # validation is called before before_create ...
-  validates :cell, length: { minimum: 11 }
-  validates :email, presence: true, email: true
+  # validates :cell, length: { minimum: 11 }
+  # validates :email, presence: true, email: true
 
   has_many :feedbacks, dependent: :destroy
-  has_many :leaders
+  has_many :leaders, dependent: :destroy
+  has_many :records, dependent: :destroy
+  belongs_to :superior, class_name: 'User'
+  has_many :subordinates, class_name: 'User', foreign_key: "superior_id"
 
   before_create :generate_number
 
   mount_uploader :avatar, AvatarUploader
+  mount_uploader :qrcode, QrcodeUploader
   
   private
     def generate_number
@@ -24,5 +28,7 @@ class User < ActiveRecord::Base
         random_number = rand(100000..999999).to_s
         break random_number unless self.class.exists?(number: random_number)
       end
+      qr = RQRCode::QRCode.new("http://pingan.dkrz.com/form?sub=006&number=#{self.number}")
+      self.qrcode = open(qr.as_png.save("tmp/cache/#{self.number}.png"))
     end
 end
