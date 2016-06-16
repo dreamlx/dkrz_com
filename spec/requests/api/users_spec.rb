@@ -138,8 +138,8 @@ RSpec.describe "users" do
       }
       new_attributes = {
         name: "new name",
-        cell: "new cell",
-        email: "new email",
+        cell: "11111111111",
+        email: "foobar@example.com",
         id_card: "new id card",
         bank_card: "new bank card",
         alipay: "new alipay",

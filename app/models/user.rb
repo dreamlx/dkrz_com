@@ -8,8 +8,8 @@ end
 class User < ActiveRecord::Base
   validates :openid, presence: true, uniqueness: true
   # validates :number, length: { is: 6 } # validation is called before before_create ...
-  # validates :cell, length: { minimum: 11 }
-  # validates :email, presence: true, email: true
+  validates :cell, length: { minimum: 11 }, allow_blank: true
+  validates :email, presence: true, email: true, allow_blank: true
 
   has_many :feedbacks, dependent: :destroy
   has_many :leaders, dependent: :destroy

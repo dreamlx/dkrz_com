@@ -74,8 +74,8 @@ curl -X PATCH -d "user[name]=xxx&..." --header "Authorization: Token token=#{ope
   {
     "avatar"=> "data:image/png;base64,...",
     "name"=> "new name",
-    "cell"=> "new cell",
-    "email"=> "new email",
+    "cell"=> "1111111111",
+    "email"=> "foobar@example.com",
     "id_card"=> "id card",
     "bank_card"=> "bank card",
     "alipay"=> "alipay"
