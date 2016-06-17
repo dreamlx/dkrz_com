@@ -4,7 +4,7 @@ zh-CN:
       admin: 管理员
       user: 信贷员
       feedback: 意见反馈
-      leader: 借贷人
+      leader: 贷款
     attributes:
       admin:
         id: ID
@@ -49,6 +49,7 @@ zh-CN:
         has_accumulation_fund: 是否正在缴费公积金
         created_at: 创建
         updated_at: 更新
+        channel: 渠道
   title: DKRZ
   new_admin: 新建管理员
   admin_list: 管理员列表
