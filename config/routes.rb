@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get :get_balance, on: :collection, defaults: {format: :json}
       get :commissions, on: :collection, defaults: {format: :json}
       get :subordinates, on: :collection, defaults: {format: :json}
+      get :wx_get_jsapi_ticket, on: :collection, defaults: {format: :json}
     end
     resources :feedbacks, only: :create
     resources :leaders, only: :create

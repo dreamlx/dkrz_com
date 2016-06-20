@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615164839) do
+ActiveRecord::Schema.define(version: 20160620015536) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20160615164839) do
 
   add_index "records", ["recordable_type", "recordable_id"], name: "index_records_on_recordable_type_and_recordable_id", using: :btree
   add_index "records", ["user_id"], name: "index_records_on_user_id", using: :btree
+
+  create_table "tickets", force: :cascade do |t|
+    t.text     "ticket",     limit: 65535
+    t.text     "token",      limit: 65535
+    t.datetime "expires_at"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "openid",            limit: 255

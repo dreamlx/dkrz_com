@@ -90,3 +90,7 @@ curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:300
 ```
 curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users/subordinates
 ```
+### 获取signature
+```
+curl -X GET -d "url=http://www.baidu.com" http://25yuding.com/api/users/wx_get_jsapi_ticket
+```

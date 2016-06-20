@@ -219,4 +219,14 @@ RSpec.describe "users" do
       expect(json["third_commission"]).to eq 30.to_d.to_s
     end
   end
+
+  describe "GET #wx_get_jsapi_ticket" do
+    it "get wx_get_jsapi_ticket with url" do
+      get "/api/users/wx_get_jsapi_ticket", {url: "https://www.baidu.com"}
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      json = JSON.parse(response.body)
+      expect(json["signature"]).not_to be_nil
+    end
+  end
 end
