@@ -9,7 +9,7 @@ RSpec.describe "leaders" do
         authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
       }
       valid_attributes = attributes_for(:leader)
-      post "/api/leaders", {leader: valid_attributes}, valid_header
+      post "/api/leaders", valid_attributes, valid_header
       expect(response).to be_success
       expect(response).to have_http_status(201)
       leader = Leader.first

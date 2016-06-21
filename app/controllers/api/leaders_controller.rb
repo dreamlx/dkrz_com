@@ -10,7 +10,7 @@ class Api::LeadersController < Api::BaseController
 
   private
     def leader_params
-      params.require(:leader).permit(
+      params.permit(
         :name, :phone, :sex, :workplace, :birth,
         :income, :payoff_type, :job, :has_credit_card, :loan_experience,
         :mortgage, :has_car_loan, :has_accumulation_fund,
