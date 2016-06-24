@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :subordinates, class_name: 'User', foreign_key: "superior_id"
 
   before_create :generate_number
+  after_create :generate_qrcode
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :qrcode, QrcodeUploader
@@ -28,7 +29,10 @@ class User < ActiveRecord::Base
         random_number = rand(100000..999999).to_s
         break random_number unless self.class.exists?(number: random_number)
       end
+    end
+
+    def generate_qrcode
       qr = RQRCode::QRCode.new("http://pingan.dkrz.com/form?sub=006&number=#{self.number}")
-      self.qrcode = open(qr.as_png.save("tmp/cache/#{self.number}.png"))
+      update(qrcode: open(qr.as_png.save("tmp/cache/#{self.number}.png")))
     end
 end

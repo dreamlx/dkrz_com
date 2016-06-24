@@ -34,13 +34,13 @@ RSpec.describe "users" do
       expect(user.openid).to eq "openid"
       expect(user.number).to eq json["number"]
       expect(user.number).not_to be_nil
+      expect(user.qrcode_url).not_to be_nil
     end
   end
 
   describe "GET #get_qrcode" do
     it "get user's qrcode url" do
       user = create(:user)
-      user.save
       valid_header = {
         authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
       }
@@ -164,7 +164,6 @@ RSpec.describe "users" do
   describe "GET #get_balance" do
     it "get user's balance" do
       user = create(:user)
-      user.save
       valid_header = {
         authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
       }
