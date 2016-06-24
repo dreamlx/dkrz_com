@@ -29,6 +29,11 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to admin_users_url
+  end
+
   private
     def user_params
       params.require(:user).permit(
