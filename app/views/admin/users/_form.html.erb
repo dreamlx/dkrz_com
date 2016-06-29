@@ -6,6 +6,7 @@
     <%= f.input :name %>
     <%= f.input :cell %>
     <%= f.input :email %>
+    <%= f.input :channel, collection: User::CHANNELS %>
     <%= f.button :submit %>
   <% end %>
 </div>

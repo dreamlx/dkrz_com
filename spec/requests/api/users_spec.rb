@@ -19,6 +19,7 @@ RSpec.describe "users" do
       expect(json["id_card"]).to eq user.id_card
       expect(json["bank_card"]).to eq user.bank_card
       expect(json["alipay"]).to eq user.alipay
+      expect(json["channel"]).to eq '001'
     end
 
     it "create a user with openid" do

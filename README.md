@@ -13,7 +13,8 @@ curl -X GET --header "Authorization: Token token=#{openid}" http://localhost:300
     "email"=>"foobar4@example.com", 
     "id_card"=>"MyString", 
     "bank_card"=>"MyString", 
-    "alipay"=>"MyString"
+    "alipay"=>"MyString",
+    "channel"=>"001"
   }
 }
 ```

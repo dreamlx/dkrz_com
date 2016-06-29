@@ -38,6 +38,6 @@ class Admin::UsersController < Admin::BaseController
     def user_params
       params.require(:user).permit(
         :openid, :avatar, :name, :email,
-        :cell, :number)
+        :cell, :number, :channel)
     end
 end

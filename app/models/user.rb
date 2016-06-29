@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
   mount_uploader :qrcode, QrcodeUploader
+  CHANNELS = ["001", "002", "003", "004", "005", "006"]
   
   private
     def generate_number

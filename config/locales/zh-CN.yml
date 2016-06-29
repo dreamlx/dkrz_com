@@ -26,6 +26,7 @@ zh-CN:
         alipay: 支付宝
         created_at: 创建
         updated_at: 更新
+        channel: 渠道
       feedback:
         id: ID
         content: 意见内容
