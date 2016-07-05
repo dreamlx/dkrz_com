@@ -23,6 +23,14 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   mount_uploader :qrcode, QrcodeUploader
   CHANNELS = ["001", "002", "003", "004", "005", "006"]
+
+  def total_commission
+    commission + second_commission + third_commission
+  end
+
+  def total_amount
+    leaders.sum(:amount)
+  end
   
   private
     def generate_number

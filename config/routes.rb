@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     post    'login'   => 'sessions#create'
     delete  'logout'  => 'sessions#destroy'
     resources :admins
-    resources :users
+    resources :users do
+      get :export, on: :collection
+    end
     resources :feedbacks, only: [:index, :destroy, :show]
     resources :leaders, only: :index
     root 'welcome#index'

@@ -1,10 +1,14 @@
 <div class="col-md-10">
-  <h3><%= t(:user_list) %></h3>
+  <h3>
+    <%= t(:user_list) %>
+    <small><%= link_to 'Export', export_admin_users_path(format: :xlsx) %></small>
+  </h3>
 </div>
 <div class="col-md-2">
   <%= link_to t(:new_user), new_admin_user_path, class: "btn btn-danger" %>
 </div>
 <div class="col-md-12">
+  <%= paginate @users %>
   <table class="table">
     <thead>
       <tr>
@@ -16,8 +20,10 @@
         <th><%= User.human_attribute_name(:cell) %></th>
         <th><%= User.human_attribute_name(:email) %></th>
         <th><%= User.human_attribute_name(:channel) %></th>
+        <th><%= User.human_attribute_name(:superior_id) %></th>
+        <th><%= User.human_attribute_name(:total_amount) %></th>
+        <th><%= User.human_attribute_name(:total_commission) %></th>
         <th><%= User.human_attribute_name(:created_at) %></th>
-        <th><%= User.human_attribute_name(:updated_at) %></th>
         <th colspan="2"><%= t(:operations) %></th>
       </tr>
     </thead>
@@ -25,4 +31,5 @@
       <%= render @users %>
     </tbody>
   </table>
+  <%= paginate @users %>
 </div>

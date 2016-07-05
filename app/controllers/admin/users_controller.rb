@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::BaseController
   def index
-    @users = User.all
+    @users = User.page params[:page]
   end
 
   def new
@@ -32,6 +32,14 @@ class Admin::UsersController < Admin::BaseController
   def destroy
     User.find(params[:id]).destroy
     redirect_to admin_users_url
+  end
+
+  def export
+    @users = User.all
+    respond_to do |format|
+      header_string = 'attachment; filename=users' + DateTime.now.to_s(:number) + ".xlsx"
+      format.xlsx{  response.headers['Content-Disposition'] = header_string}
+    end
   end
 
   private

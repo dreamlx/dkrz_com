@@ -51,7 +51,7 @@ class Api::UsersController < Api::BaseController
       commission: current_user.commission,
       second_commission: current_user.second_commission,
       third_commission: current_user.third_commission,
-      total_commission: current_user.commission + current_user.second_commission + current_user.third_commission,
+      total_commission: current_user.total_commission,
       leader_count: current_user.leaders.count,
       today_leader_count: current_user.leaders.where("created_at >= ?", Time.zone.now.beginning_of_day).count,
       total_amount: current_user.leaders.sum(:amount)

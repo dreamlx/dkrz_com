@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "信贷员") do |sheet|
+  sheet.add_row [
+    User.human_attribute_name(:id), User.human_attribute_name(:openid),
+    User.human_attribute_name(:avatar),
+    User.human_attribute_name(:number),
+    User.human_attribute_name(:name),
+    User.human_attribute_name(:cell),
+    User.human_attribute_name(:email),
+    User.human_attribute_name(:channel),
+    User.human_attribute_name(:superior_id),
+    User.human_attribute_name(:total_amount),
+    User.human_attribute_name(:total_commission),
+    User.human_attribute_name(:created_at)
+    ]
+  i = 1
+  @users.each do |user|
+    sheet.add_row [
+      user.id,
+      user.openid,
+      "",
+      user.number,
+      user.name,
+      user.cell,
+      user.email,
+      user.channel,
+      user.superior_id,
+      user.total_amount,
+      user.total_commission,
+      I18n.l(user.created_at, format: :long)]
+    add_image(sheet, user.avatar, 2, i)
+    i += 1
+  end
+end

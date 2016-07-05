@@ -27,6 +27,9 @@ zh-CN:
         created_at: 创建
         updated_at: 更新
         channel: 渠道
+        superior_id: 上线
+        total_commission: 佣金总额
+        total_amount: 贷款总额
       feedback:
         id: ID
         content: 意见内容
