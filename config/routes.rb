@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       get :export, on: :collection
     end
     resources :feedbacks, only: [:index, :destroy, :show]
-    resources :leaders, only: [:index, :edit, :update]
+    resources :leaders, only: [:index, :edit, :update] do
+      get :export, on: :collection
+    end
     root 'welcome#index'
   end
 

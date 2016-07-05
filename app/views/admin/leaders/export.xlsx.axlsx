@@ -1,0 +1,63 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "贷款") do |sheet|
+  sheet.add_row [
+        Leader.human_attribute_name(:id),
+        User.model_name.human + User.human_attribute_name(:name),
+        User.model_name.human + User.human_attribute_name(:cell),
+        User.model_name.human + User.human_attribute_name(:email),
+        Leader.human_attribute_name(:name),
+        Leader.human_attribute_name(:phone),
+        Leader.human_attribute_name(:sex),
+        Leader.human_attribute_name(:birth),
+        Leader.human_attribute_name(:workplace),
+        Leader.human_attribute_name(:income),
+        Leader.human_attribute_name(:payoff_type),
+        Leader.human_attribute_name(:job),
+        Leader.human_attribute_name(:has_credit_card),
+        Leader.human_attribute_name(:loan_experience),
+        Leader.human_attribute_name(:mortgage),
+        Leader.human_attribute_name(:has_car_loan),
+        Leader.human_attribute_name(:has_accumulation_fund),
+        Leader.human_attribute_name(:has_life_insurance),
+        Leader.human_attribute_name(:channel),
+        Leader.human_attribute_name(:approve_time),
+        Leader.human_attribute_name(:amount),
+        Leader.human_attribute_name(:commission),
+        Leader.human_attribute_name(:second_commission),
+        Leader.human_attribute_name(:third_commission),
+        Leader.human_attribute_name(:created_at)
+    ]
+  @leaders.each do |leader|
+    birth = leader.birth ? I18n.l(leader.birth) : ""
+    name = leader.user ? leader.user.name : ""
+    cell = leader.user ? leader.user.cell : ""
+    email = leader.user ? leader.user.email : ""
+    sheet.add_row [
+      leader.id,
+      name,
+      cell,
+      email,
+      leader.name,
+      leader.phone,
+      leader.sex,
+      birth,
+      leader.workplace,
+      leader.income,
+      leader.payoff_type,
+      leader.job,
+      leader.has_credit_card,
+      leader.loan_experience,
+      leader.mortgage,
+      leader.has_car_loan,
+      leader.has_accumulation_fund,
+      leader.has_life_insurance,
+      leader.channel,
+      leader.approve_time,
+      leader.amount,
+      leader.commission,
+      leader.second_commission,
+      leader.third_commission,
+      I18n.l(leader.created_at, format: :long)
+      ]
+  end
+end

@@ -7,6 +7,14 @@ class Admin::LeadersController < Admin::BaseController
     @leader = Leader.find(params[:id])
   end
 
+  def export
+    @leaders = Leader.all
+    respond_to do |format|
+      header_string = 'attachment; filename=leaders' + DateTime.now.to_s(:number) + ".xlsx"
+      format.xlsx{  response.headers['Content-Disposition'] = header_string}
+    end
+  end
+
   def update
     @leader = Leader.find(params[:id])
     if @leader.update(leader_params)

@@ -1,7 +1,8 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "信贷员") do |sheet|
   sheet.add_row [
-    User.human_attribute_name(:id), User.human_attribute_name(:openid),
+    User.human_attribute_name(:id), 
+    User.human_attribute_name(:openid),
     User.human_attribute_name(:avatar),
     User.human_attribute_name(:number),
     User.human_attribute_name(:name),
