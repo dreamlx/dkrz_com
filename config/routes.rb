@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
     resources :feedbacks, only: :create
     resources :leaders, only: :create
+    get 'get_serial_number' => 'codes#index' 
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
