@@ -1,0 +1,13 @@
+<div class="col-md-6">
+  <%= simple_form_for([:admin, @leader]) do |f| %>
+    <%= f.input :approve_time %>
+    <%= f.input :amount %>
+    <%= f.input :commission if @leader.user %>
+    <%= f.input :second_commission if @leader.user &&  @leader.user.superior %>
+    <%= f.input :third_commission if @leader.user && @leader.user.superior && @leader.user.superior.superior%>
+    <%= f.button :submit %>
+  <% end %>
+</div>
+<div class="col-md-12">
+  <%= link_to t(:back), :back %>
+</div>

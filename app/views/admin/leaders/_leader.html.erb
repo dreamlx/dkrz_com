@@ -18,5 +18,11 @@
   <td><%= leader.has_accumulation_fund %></td>
   <td><%= leader.has_life_insurance %></td>
   <td><%= leader.channel %></td>
-  <td><%= I18n.l(leader.created_at) %></td>
+  <td><%= leader.approve_time %></td>
+  <td><%= leader.amount %></td>
+  <td><%= leader.commission %></td>
+  <td><%= leader.second_commission %></td>
+  <td><%= leader.third_commission %></td>
+  <td><%= I18n.l(leader.created_at, format: :long) %></td>
+  <td><%= link_to t(:edit), edit_admin_leader_path(leader) %></td>
 </tr>

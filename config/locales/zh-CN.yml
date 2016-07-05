@@ -54,6 +54,11 @@ zh-CN:
         created_at: 创建
         updated_at: 更新
         channel: 渠道
+        approve_time: 获批时间
+        amount: 获批金额
+        commission: 佣金额
+        second_commission: 一级下线佣金额
+        third_commission: 二级下线佣金额
   title: DKRZ
   new_admin: 新建管理员
   admin_list: 管理员列表
