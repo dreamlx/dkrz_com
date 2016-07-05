@@ -2,6 +2,7 @@
   <h3><%= t(:leader_list) %></h3>
 </div>
 <div class="col-md-12">
+  <%= paginate @leaders %>
   <table class="table">
     <thead>
       <tr>
@@ -31,4 +32,5 @@
       <%= render @leaders %>
     </tbody>
   </table>
+  <%= paginate @leaders %>
 </div>

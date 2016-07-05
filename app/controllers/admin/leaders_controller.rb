@@ -1,5 +1,5 @@
 class Admin::LeadersController < Admin::BaseController
   def index
-    @leaders = Leader.all
+    @leaders = Leader.page params[:page]
   end
 end
