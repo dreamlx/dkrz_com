@@ -25,13 +25,14 @@ wb.add_worksheet(name: "贷款") do |sheet|
         Leader.human_attribute_name(:commission),
         Leader.human_attribute_name(:second_commission),
         Leader.human_attribute_name(:third_commission),
-        Leader.human_attribute_name(:created_at)
+        Leader.human_attribute_name(:apply_date)
     ]
   @leaders.each do |leader|
     birth = leader.birth ? I18n.l(leader.birth) : ""
     name = leader.user ? leader.user.name : ""
     cell = leader.user ? leader.user.cell : ""
     email = leader.user ? leader.user.email : ""
+    apply_date = leader.apply_date ? I18n.l(leader.apply_date, format: :long) : I18n.l(leader.created_at, format: :long)
     sheet.add_row [
       leader.id,
       name,
@@ -57,7 +58,7 @@ wb.add_worksheet(name: "贷款") do |sheet|
       leader.commission,
       leader.second_commission,
       leader.third_commission,
-      I18n.l(leader.created_at, format: :long)
+      apply_date
       ]
   end
 end

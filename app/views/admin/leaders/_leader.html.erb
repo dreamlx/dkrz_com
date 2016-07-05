@@ -23,6 +23,6 @@
   <td><%= leader.commission %></td>
   <td><%= leader.second_commission %></td>
   <td><%= leader.third_commission %></td>
-  <td><%= I18n.l(leader.created_at, format: :long) %></td>
+  <td><%= leader.apply_date ? I18n.l(leader.apply_date, format: :long) : I18n.l(leader.created_at, format: :long) %></td>
   <td><%= link_to t(:edit), edit_admin_leader_path(leader) %></td>
 </tr>

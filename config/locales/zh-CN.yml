@@ -59,6 +59,7 @@ zh-CN:
         commission: 佣金额
         second_commission: 一级下线佣金额
         third_commission: 二级下线佣金额
+        apply_date: 申请日期
   title: DKRZ
   new_admin: 新建管理员
   admin_list: 管理员列表
