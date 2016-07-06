@@ -2,9 +2,7 @@ wb = xlsx_package.workbook
 wb.add_worksheet(name: "贷款") do |sheet|
   sheet.add_row [
         Leader.human_attribute_name(:id),
-        User.model_name.human + User.human_attribute_name(:name),
-        User.model_name.human + User.human_attribute_name(:cell),
-        User.model_name.human + User.human_attribute_name(:email),
+        User.model_name.human + User.human_attribute_name(:id),
         Leader.human_attribute_name(:name),
         Leader.human_attribute_name(:phone),
         Leader.human_attribute_name(:sex),
@@ -29,15 +27,10 @@ wb.add_worksheet(name: "贷款") do |sheet|
     ]
   @leaders.each do |leader|
     birth = leader.birth ? I18n.l(leader.birth) : ""
-    name = leader.user ? leader.user.name : ""
-    cell = leader.user ? leader.user.cell : ""
-    email = leader.user ? leader.user.email : ""
     apply_date = leader.apply_date ? I18n.l(leader.apply_date, format: :long) : I18n.l(leader.created_at, format: :long)
     sheet.add_row [
       leader.id,
-      name,
-      cell,
-      email,
+      leader.user_id,
       leader.name,
       leader.phone,
       leader.sex,
