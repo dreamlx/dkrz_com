@@ -1,6 +1,6 @@
 <tr>
   <td><%= leader.id %></td>
-  <td><%= leader.user_id %></td>
+  <td><%= leader.user.number if leader.user %></td>
   <td><%= leader.name %></td>
   <td><%= leader.phone %></td>
   <td><%= leader.sex %></td>
