@@ -21,8 +21,12 @@ class Api::UsersController < Api::BaseController
 
   def index
     @subordinates = User.ransack(superior_id_eq: current_user.id, cell_end: params[:phone]).result
-    @lower_subordinate = User.ransack(superior_id_in: current_user.subordinates.ids, cell_end: params[:phone]).result
-
+    if @subordinates.blank?
+      @lower_subordinate = []
+    else
+      @lower_subordinate = User.ransack(superior_id_in: current_user.subordinates.ids, cell_end: params[:phone]).result
+    end
+    
     users = []
     @subordinates.each do |user|
       users << {:name => filter_name(user.name),
