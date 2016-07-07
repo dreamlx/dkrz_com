@@ -15,6 +15,16 @@ class Admin::LeadersController < Admin::BaseController
     end
   end
 
+  def confirm
+    Leader.find(params[:id]).confirm
+    redirect_to admin_leaders_path
+  end
+
+  def deny
+    Leader.find(params[:id]).deny
+    redirect_to admin_leaders_path
+  end
+
   def update
     @leader = Leader.find(params[:id])
     if @leader.update(leader_params)
@@ -72,6 +82,7 @@ class Admin::LeadersController < Admin::BaseController
     def leader_params
       params.require(:leader).permit(
         :approve_time, :amount, :commission,
-        :second_commission, :third_commission)
+        :second_commission, :third_commission,
+        :loan_state)
     end
 end

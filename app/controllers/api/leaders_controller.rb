@@ -24,4 +24,8 @@ class Api::LeadersController < Api::BaseController
       return api_error(status: 422)
     end
   end
+
+  def index
+    @leaders = Leader.ransack(user_id_eq: current_user.id, phone_end: params["phone"]).result
+  end
 end

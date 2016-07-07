@@ -60,6 +60,8 @@ zh-CN:
         second_commission: 一级下线佣金额
         third_commission: 二级下线佣金额
         apply_date: 申请日期
+        state: 状态
+        loan_state: 贷款状态
   title: DKRZ
   new_admin: 新建管理员
   admin_list: 管理员列表
@@ -79,3 +81,5 @@ zh-CN:
   feedback_list: 意见反馈列表
   show: 显示
   leader_list: 借贷人列表
+  confirm: 通过
+  deny: 未通过

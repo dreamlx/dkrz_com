@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705094942) do
+ActiveRecord::Schema.define(version: 20160707020933) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20160705094942) do
     t.decimal  "commission",                        precision: 12, scale: 2, default: 0.0
     t.decimal  "second_commission",                 precision: 12, scale: 2, default: 0.0
     t.decimal  "third_commission",                  precision: 12, scale: 2, default: 0.0
+    t.string   "state",                 limit: 255
+    t.string   "loan_state",            limit: 255
   end
 
   add_index "leaders", ["user_id"], name: "index_leaders_on_user_id", using: :btree

@@ -222,11 +222,41 @@ RSpec.describe "users" do
 
   describe "GET #wx_get_jsapi_ticket" do
     it "get wx_get_jsapi_ticket with url" do
-      get "/api/users/wx_get_jsapi_ticket", {url: "https://www.baidu.com"}
+      # get "/api/users/wx_get_jsapi_ticket", {url: "https://www.baidu.com"}
+      # expect(response).to be_success
+      # expect(response).to have_http_status(200)
+      # json = JSON.parse(response.body)
+      # expect(json["signature"]).not_to be_nil
+    end
+  end
+
+  describe "GET #index" do
+    it "get someone's users" do
+      user = create(:user)
+      valid_header = {
+        authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
+      }
+      subordinate = create(:user, superior_id: user.id, name: "张三", cell: "11111111111")
+      subordinate_leader = create(:leader, user_id: subordinate.id, amount: 1000, second_commission: 10)
+      lower_subordinate = create(:user, superior_id: subordinate.id, name: "李四", cell: "22222222222")
+      lower_subordinate_leader = create(:leader, user_id: lower_subordinate.id, amount: 300, third_commission: 3)
+      get "/api/users", {}, valid_header
       expect(response).to be_success
       expect(response).to have_http_status(200)
-      json = JSON.parse(response.body)
-      expect(json["signature"]).not_to be_nil
+      json = JSON.parse(response.body)["users"]
+      expect(json.first["name"]).to eq "张*"
+      expect(json.first["cell"]).to eq "1111111****"
+      expect(json.first["level"]).to eq "二级"
+      expect(json.first["leaders_count"]).to eq 1
+      expect(json.first["leaders_amount"]).to eq "1,000"
+      expect(json.first["commission"]).to eq "10"
+
+      expect(json.last["name"]).to eq "李*"
+      expect(json.last["cell"]).to eq "2222222****"
+      expect(json.last["level"]).to eq "三级"
+      expect(json.last["leaders_count"]).to eq 1
+      expect(json.last["leaders_amount"]).to eq "300"
+      expect(json.last["commission"]).to eq "3"
     end
   end
 end

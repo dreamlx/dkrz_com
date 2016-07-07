@@ -46,13 +46,51 @@ RSpec.describe "leaders" do
     end
   end
 
-  describe "GET #get_serial_number" do
-    it "get serial_number" do
-      get "/api/get_serial_number"
+  describe "GET #index" do
+    it "get someone's leaders" do
+      user = create(:user)
+      valid_header = {
+        authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
+      }
+      leader = create(:leader, user_id: user.id, name: "李响", phone: "11111111111", loan_state: "some reason")
+      leader.confirm
+      get "/api/leaders",{}, valid_header
       expect(response).to be_success
       expect(response).to have_http_status(200)
-      json = JSON.parse(response.body)
-      expect(json["serial_number"]).to be_a(Integer)
+      json = JSON.parse(response.body)["leaders"].first
+      expect(json["name"]).to eq "李*"
+      expect(json["phone"]).to eq "1111111****"
+      expect(json["state"]).to eq "通过"
+      expect(json["loan_state"]).to eq "some reason"
+      expect(json["date"]).to eq I18n.l(leader.updated_at.to_date, format: :long)
+    end
+
+    it "get leader with phone" do
+      user = create(:user)
+      valid_header = {
+        authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
+      }
+      leader = create(:leader, user_id: user.id, name: "李响", phone: "11111111111", loan_state: "some reason")
+      leader.confirm
+      get "/api/leaders",{phone: "1111"}, valid_header
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      json = JSON.parse(response.body)["leaders"]
+      expect(json.count).to eq 1
+    end
+
+    it "get no leader with phone" do
+      user = create(:user)
+      valid_header = {
+        authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
+      }
+      leader = create(:leader, user_id: user.id, name: "李响", phone: "11111111111", loan_state: "some reason")
+      leader.confirm
+      get "/api/leaders",{phone: "2222"}, valid_header
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      json = JSON.parse(response.body)["leaders"]
+      expect(json).to be_blank
     end
   end
 end

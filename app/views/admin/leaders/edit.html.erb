@@ -1,5 +1,6 @@
 <div class="col-md-6">
   <%= simple_form_for([:admin, @leader]) do |f| %>
+    <%= f.input :loan_state %>
     <%= f.input :approve_time %>
     <%= f.input :amount %>
     <%= f.input :commission if @leader.user %>

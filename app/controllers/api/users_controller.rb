@@ -1,3 +1,6 @@
+require 'action_view'
+include ActionView::Helpers::NumberHelper
+
 class Api::UsersController < Api::BaseController
   skip_before_action :authenticate_user!, only: :wx_get_jsapi_ticket
   def get_info
@@ -14,6 +17,31 @@ class Api::UsersController < Api::BaseController
 
   def get_balance
     render json: {balance: current_user.balance}
+  end
+
+  def index
+    @subordinates = User.ransack(superior_id_eq: current_user.id, phone_end: params[:phone]).result
+    @lower_subordinate = User.ransack(superior_id_in: current_user.subordinates.ids, phone_end: params[:phone]).result
+
+    users = []
+    @subordinates.each do |user|
+      users << {:name => filter_name(user.name),
+                :cell => filter_phone(user.cell),
+                :level => "二级",
+                :leaders_count => user.leaders.count,
+                :leaders_amount => number_with_delimiter(user.leaders.sum(:amount).to_i),
+                :commission => number_with_delimiter(user.leaders.sum(:second_commission).to_i)}
+    end
+
+    @lower_subordinate.each do |user|
+      users << {:name => filter_name(user.name),
+                :cell => filter_phone(user.cell),
+                :level => "三级",
+                :leaders_count => user.leaders.count,
+                :leaders_amount => number_with_delimiter(user.leaders.sum(:amount).to_i),
+                :commission => number_with_delimiter(user.leaders.sum(:third_commission).to_i)}
+    end
+    render json: {users: users}
   end
 
   def set_superior

@@ -10,12 +10,14 @@ Rails.application.routes.draw do
     resources :feedbacks, only: [:index, :destroy, :show]
     resources :leaders, only: [:index, :edit, :update] do
       get :export, on: :collection
+      get :confirm, on: :member
+      get :deny, on: :member
     end
     root 'welcome#index'
   end
 
   namespace :api do
-    resources :users, only: [] do
+    resources :users, only: [:index], defaults: {format: :json} do
       get :get_info, on: :collection, defaults: {format: :json}
       get :get_qrcode, on: :collection, defaults: {format: :json}
       get :get_invite_code, on: :collection, defaults: {format: :json}
@@ -27,7 +29,7 @@ Rails.application.routes.draw do
       get :wx_get_jsapi_ticket, on: :collection, defaults: {format: :json}
     end
     resources :feedbacks, only: :create
-    resources :leaders, only: :create
+    resources :leaders, only: [:index, :create], defaults: {format: :json}
     get 'get_serial_number' => 'codes#index' 
   end
   # The priority is based upon order of creation: first created -> highest priority.
