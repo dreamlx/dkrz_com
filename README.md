@@ -37,14 +37,14 @@ params: {
           "birth"=> "2016-06-11",
           "workplace"=>"Shanghai",
           "income"=>"8000元以上",
-          "payoff_type"=>"银行转账发薪",
-          "job"=>"IT",
-          "has_credit_card"=> "yes",
-          "loan_experience"=> "yes",
+          "payoffType"=>"银行转账发薪",
+          "profession"=>"IT",
+          "hasCreditCard"=> "yes",
+          "loanExperience"=> "yes",
           "mortgage"=>"yes",
-          "has_car_loan"=>"yes",
-          "has_accumulation_fund"=>"yes",
-          "has_life_insurance"=>"yes"
+          "hasCarLoan"=>"yes",
+          "hasAccumulationFund"=>"yes",
+          "hasLifeInsurance"=>"yes"
           "channel"=>"001"
         }
 response: status is 200 if ok, else 422 or 401
