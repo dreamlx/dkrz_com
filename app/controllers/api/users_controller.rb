@@ -21,12 +21,12 @@ class Api::UsersController < Api::BaseController
 
   def index
     @subordinates = User.ransack(superior_id_eq: current_user.id, cell_end: params[:phone]).result
-    if @subordinates.blank?
+    if current_user.subordinates.blank?
       @lower_subordinate = []
     else
       @lower_subordinate = User.ransack(superior_id_in: current_user.subordinates.ids, cell_end: params[:phone]).result
     end
-    
+
     users = []
     @subordinates.each do |user|
       users << {:name => filter_name(user.name),
@@ -52,6 +52,7 @@ class Api::UsersController < Api::BaseController
     return render json: { message: "请不要重复绑定"}, status: 422  if current_user.superior
     @superior = User.find_by(number: params["invite_code"])
     return render json: { message: "无效邀请码"}, status: 422 if params["invite_code"].blank? || @superior.nil?
+    return render json: { message: "不允许绑定自己" }, status: 422 if @superior.id == current_user.id
     if current_user.update(superior_id: @superior.id)
       record = current_user.records.create(
         amount: 400,

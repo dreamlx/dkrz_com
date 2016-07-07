@@ -129,6 +129,18 @@ RSpec.describe "users" do
       json = JSON.parse(response.body)
       expect(json["message"]).to eq "无效邀请码"
     end
+
+    it "failed to set superior if using self's invite code" do
+      user = create(:user)
+      valid_header = {
+        authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
+      }
+      get "/api/users/set_superior", {invite_code: user.number}, valid_header
+      expect(response).not_to be_success
+      expect(response).to have_http_status(422)
+      json = JSON.parse(response.body)
+      expect(json["message"]).to eq "不允许绑定自己"
+    end
   end
 
   describe "PATCH #update_profile" do
