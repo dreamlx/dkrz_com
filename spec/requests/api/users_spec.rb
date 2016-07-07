@@ -281,5 +281,21 @@ RSpec.describe "users" do
       expect(json.last["leaders_amount"]).to eq "300"
       expect(json.last["commission"]).to eq "3"
     end
+
+    it "get someone's users with no name and phone" do
+      user = create(:user)
+      valid_header = {
+        authorization: ActionController::HttpAuthentication::Token.encode_credentials("#{user.openid}")
+      }
+      subordinate = create(:user, superior_id: user.id, name: nil, cell: nil)
+      subordinate_leader = create(:leader, user_id: subordinate.id, amount: 1000, second_commission: 10)
+      lower_subordinate = create(:user, superior_id: subordinate.id, name: nil, cell: nil)
+      lower_subordinate_leader = create(:leader, user_id: lower_subordinate.id, amount: 300, third_commission: 3)
+      get "/api/users", {},valid_header
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+      json = JSON.parse(response.body)["users"]
+      expect(json.count).to eq 2
+    end
   end
 end

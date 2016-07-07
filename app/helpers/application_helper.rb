@@ -66,7 +66,7 @@ module ApplicationHelper
   end
 
   def filter_name(name)
-    if name.length > 1
+    if name && name.length > 1
       name[0] + ("*" * (name.length - 1))
     else
       "*"
@@ -74,7 +74,7 @@ module ApplicationHelper
   end
 
   def filter_phone(phone)
-    return "****" if phone.length < 5
+    return "****" if phone.nil? || phone.length < 5
     return phone[0..(phone.length - 5)] + "*" * 4
   end
 end
