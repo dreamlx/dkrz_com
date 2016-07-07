@@ -20,8 +20,8 @@ class Api::UsersController < Api::BaseController
   end
 
   def index
-    @subordinates = User.ransack(superior_id_eq: current_user.id, phone_end: params[:phone]).result
-    @lower_subordinate = User.ransack(superior_id_in: current_user.subordinates.ids, phone_end: params[:phone]).result
+    @subordinates = User.ransack(superior_id_eq: current_user.id, cell_end: params[:phone]).result
+    @lower_subordinate = User.ransack(superior_id_in: current_user.subordinates.ids, cell_end: params[:phone]).result
 
     users = []
     @subordinates.each do |user|
