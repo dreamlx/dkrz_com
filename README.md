@@ -101,11 +101,11 @@ curl -X GET  http://localhost:3000/api/get_serial_number
 ```
 ### 贷款用户明细
 ```
-curl -X GET -d "phone=1111" http://localhost:3000/api/leaders
+curl -X GET -d "phone=1111" --header "Authorization: Token token=#{openid}" http://localhost:3000/api/leaders
 state: 状态
 loan_state: 贷款状态
 ```
 ### 代理人数据
 ```
-curl -X GET -d "phone=1111" http://localhost:3000/api/users
+curl -X GET -d "phone=1111" --header "Authorization: Token token=#{openid}" http://localhost:3000/api/users
 ```
