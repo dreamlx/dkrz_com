@@ -5736,14 +5736,14 @@ section .feature li:before {
     border-radius: 50%;
     position: absolute;
     background: #ccc;
-    top: 10px;
+    top: 7px;
     left: 10px;
 }
 
 section .feature em {
     font-style: normal;
     color: #3298D8;
-    padding: 0 5px;
+    padding: 0px 5px;
     font-size: 14px;
 }
 
@@ -6342,7 +6342,7 @@ body {
 .sect .caption {
     text-align: left;
     font-size: 16px;
-    line-height: 65px;
+    line-height: 68px;
     position: relative;
     padding-left: 76px;
 }
@@ -6360,7 +6360,7 @@ body {
     background-size: contain;
     position: absolute;
     left: 16px;
-    top: 16px;
+    top: 14px;
 }
 
 .sect .caption .label {
@@ -6471,7 +6471,7 @@ body {
 .m-info .feature li em {
     font-style: normal;
     color: #D25654;
-    padding: 0 5px;
+    padding: 0 4px;
     font-size: 16px;
 }
 
@@ -6488,11 +6488,11 @@ body {
     top: 0px;
     left: 10px;
     display: block;
-    line-height: 25px;
+    line-height: 21px;
 }
 
 .agency .m-info .feature li em {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .agency .sect .caption {
@@ -6707,7 +6707,7 @@ body {
     top: 0px;
     left: 10px;
     display: block;
-    line-height: 25px;
+    line-height: 21px;
 }
 
 .weui_btn.weui_btn_primary.weui_btn_blue {
